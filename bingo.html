@@ -78,11 +78,48 @@
     </table>
 
     <script>
-        cartelaB = [];
-        cartelaI = [];
-        cartelaN = [];
-        cartelaG = [];
-        cartelaO = [];
+        var cartelaB = [];
+        var cartelaI = [];
+        var cartelaN = [];
+        var cartelaG = [];
+        var cartelaO = [];
+
+        function GerarArray (NumeroInicial, quantidade) {
+            var retorno = []
+            for (var i = 0; i < quantidade; i++) {
+                retorno.push (NumeroInicial)
+                NumeroInicial++;
+            }
+            return retorno
+        }
+        cartelaB = GerarArray (1, 15);
+        console.log ("Array da coluna B");
+        console.log (cartelaB);
+
+        cartelaI = GerarArray (16, 15);
+        console.log ("Array da coluna I");
+        console.log (cartelaI);
+
+        cartelaN = GerarArray (31, 15);
+        console.log ("Array da cartela N");
+        console.log (cartelaN);
+
+        cartelaG = GerarArray (46, 15);
+        console.log ("Array da coluna G");
+        console.log (cartelaG);
+
+        cartelaO = GerarArray (61, 15);
+        console.log ("Array da coluna O");
+        console.log (cartelaO);
+
+        /* 
+            Exercício para nota:
+            
+            Faça 5 arrays, um para cada letra do bingo
+            e dentro dlees coloque 5 números referentes a sua letra
+            sem repetir nenhum número
+            tudo dinamicamente.
+        */
     </script>
 </body>
 </html>
