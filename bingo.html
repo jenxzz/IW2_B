@@ -26,10 +26,14 @@
         table {
             background-color: darkslateblue;
             border: 1px solid;
+            margin: 13px 13px;
         }
     </style>
 </head>
 <body>
+    <table>
+        
+    </table>
     <table>
         <thead>
             <tr>
@@ -82,9 +86,13 @@
             </tr>
         </tbody>
     </table>
+    
+    <button onclick="sortearNumero ()">
+        Sortear
+    </button>
 
     <button onclick="gerarCartela ()">
-    Gerar cartela
+        Gerar cartela
     </button>
 
     <script>
@@ -93,6 +101,7 @@
         var cartelaN = [];
         var cartelaG = [];
         var cartelaO = [];
+        var sorteio = [];
 
         function GerarArray (NumeroInicial, quantidade) {
             var retorno = []
@@ -100,8 +109,31 @@
                 retorno.push (NumeroInicial)
                 NumeroInicial++;
             }
-            return retorno
+            return retorno;
         }
+        
+        var b1 = document.getElementById ("b1");
+        console.log (b1);
+        var b2 = document.getElementById ("b2");
+        console.log (b2);
+
+        function MarcarSorteado (nomeId, elemento) {
+            console.log ("Elemento = ");
+            console.log (elemento);
+            console.log (nomeId);
+            elemento.style.backgroundColor = 'brown';
+            
+            function MarcarSorteado (){
+                if (elemento.style.backgroundColor == 'brown'){
+                    botão.style.backgroundColor = 'rgb(202, 152, 248)';
+                }
+
+                else {
+                    botão.style.backgroundColor = 'brown';
+            }
+            }
+        }
+
         cartelaB = GerarArray (0, 15);
         console.log ("Array da coluna B");
         console.log (cartelaB);
@@ -121,28 +153,6 @@
         cartelaO = GerarArray (60, 15);
         console.log ("Array da coluna O");
         console.log (cartelaO);
-
-        var b1 = document.getElementById ("b1");
-        console.log (b1);
-        var b2 = document.getElementById ("b2");
-        console.log (b2);
-
-        function MarcarSorteado (nomeId, elemento) {
-            console.log ("Elemento = ");
-            console.log (elemento);
-            console.log (nomeId);
-            elemento.style.backgroundColor = 'brown';
-            
-            function MarcarSorteado (){
-                if (elemento.style.backgroundColor == 'brown'){
-                    botão.style.backgroundColor = 'rgb(202, 152, 248)';
-                }
-
-                else {
-                    botão.style.backgroundColor = 'brown'
-            }
-            }
-        }
 
         function gerarCartela (){
             cartelaB = misturarArray (GerarArray (0, 15));
@@ -164,6 +174,7 @@
             cartelaO = misturarArray (GerarArray (60, 15));
             console.log ("Array da coluna O");
             console.log (cartelaO);
+            
             for (var i = 1; i <= 5; i++){
                 var td = document.getElementById ("b"+i);
                 td.innerText = cartelaB [i];
@@ -183,28 +194,28 @@
         }
 
         function numeroAleatorio (numeroMinimo, numeroMaximo) {
-            var retorno = Math.floor (Math.random () * numeroMaximo)
+            var retorno = Math.floor (Math.random () * numeroMaximo);
             if (retorno > 0 && retorno >= numeroMinimo && retorno <= numeroMaximo) {
-                return retorno
+                return retorno;
             }
 
             else {
-                return numeroAleatorio (numeroMinimo, numeroMaximo)
+                return numeroAleatorio (numeroMinimo, numeroMaximo);
             }
         }
 
         function misturarArray (array) {
-            var aleatorio
-            var cont = array.length
-            var auxiliar
+            var aleatorio;
+            var cont = array.length;
+            var auxiliar;
             while (cont != 0) {
-                aleatorio = numeroAleatorio (1, array, length)
-                cont --
-                auxiliar = array [cont]
-                array [cont] = array [aleatorio]
-                array [aleatorio] = auxiliar
+                aleatorio = numeroAleatorio (1, array.length);
+                cont--;
+                auxiliar = array [cont];
+                array [cont] = array [aleatorio];
+                array [aleatorio] = auxiliar;
             }
-            return array
+            return array;
         }
 
 
