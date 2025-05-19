@@ -7,7 +7,7 @@
     <title>Formulário</title>
 </head>
 <body>
-    <form action="salvar.html" method="post">
+    <form action="salvar.html" method="post" onsubmit="return validaForm ()">
         <label>Cep</label>
         <input type="text" name="cep" id="cep" class="campo" /><br><br>
         <label>Endereço</label>
@@ -24,5 +24,19 @@
             Enviar dados
         </button>
     </form>
+
+    <script>
+        function validaForm () {
+            var cep = document.getElementById ('cep');
+            var endereco = document.getElementById ('endereco');
+            var numero = document.getElementById ('numero');
+            var bairro = document.getElementById ('bairro');
+            
+            if (cep.value == "") {
+                alert ("Campo CEP deve ser preenchido.");
+                return false;
+            }
+        }
+    </script>
 </body>
 </html>
