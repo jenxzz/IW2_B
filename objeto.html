@@ -1,0 +1,21 @@
+<script>
+    var cadeira = {
+        "cor" : "azul",
+        "girar" : () => {
+            alert ("oi")
+        },
+        "subir" : () => {
+            document.write ("Subindo")
+        },
+        "descer" : () => {
+            console.log ("descendo")
+        },
+        "andar" : (direcao) => {
+            alert ("Sentido: "+direcao)
+        }
+    }
+    
+    cadeira.girar ();
+    cadeira.andar ("em frente");
+    cadeira.subir ();
+</script>

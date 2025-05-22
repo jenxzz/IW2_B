@@ -31,9 +31,30 @@
             var endereco = document.getElementById ('endereco');
             var numero = document.getElementById ('numero');
             var bairro = document.getElementById ('bairro');
+            var estado = document.getElementById ('estado');
             
             if (cep.value == "") {
                 alert ("Campo CEP deve ser preenchido.");
+                return false;
+            }
+
+            if (endereco.value == "") {
+                alert ("Campo endereço deve ser preenchido.");
+                return false;
+            }
+
+            if (numero.value == "") {
+                alert ("Campo número deve ser preenchido.");
+                return false;
+            }
+
+            if (bairro.value == "") {
+                alert ("Campo bairro deve ser preenchido.");
+                return false;
+            }
+
+            if (estado.value == "") {
+                alert ("Campo estado deve ser preenchido.");
                 return false;
             }
         }
