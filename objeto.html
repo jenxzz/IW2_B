@@ -1,21 +1,47 @@
+<div id="info"></div>
+<div id="cores"></div>
 <script>
-    var cadeira = {
-        "cor" : "azul",
-        "girar" : () => {
-            alert ("oi")
-        },
-        "subir" : () => {
-            document.write ("Subindo")
-        },
-        "descer" : () => {
-            console.log ("descendo")
-        },
-        "andar" : (direcao) => {
-            alert ("Sentido: "+direcao)
+    var carro = {
+        marca : "Ford",
+        modelo : "Mustang",
+        ano : 2021
+    };
+    carro.ano = 2024;
+    carro.cor = "vermelho";
+
+    var carro2 = {
+        marca : "Chevrolet",
+        modelo : "Camaro",
+        ano : 2022
+    };
+    carro2.ano = 2023;
+    carro2.cor = "amarelo";
+
+    var carro3 = {
+        marca : "Nissan",
+        modelo : "GTR-R35",
+        ano : 2020
+    };
+    carro3.ano = 2021;
+    carro3.cor = "azul";
+
+    document.getElementById("info").innerHTML =
+        carro.modelo + "<br>" +
+        carro2.modelo + "<br>" +
+        carro3.modelo + "<br>";
+
+    document.getElementById("cores").innerHTML =
+        "cores: " + carro.cor + ", " + carro2.cor + ", " + carro3.cor + "<br>";
+
+    var pessoa = {
+        nome : "Maria",
+        endereco : {
+            rua : "rua A",
+            numero : 123,
+            cidade : "São Paulo"
         }
-    }
-    
-    cadeira.girar ();
-    cadeira.andar ("em frente");
-    cadeira.subir ();
+    };
+
+    document.getElementById("info").innerHTML +=
+        "<br>Cidade: " + pessoa.endereco.cidade;
 </script>
