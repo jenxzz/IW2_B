@@ -1,47 +1,64 @@
-<div id="info"></div>
-<div id="cores"></div>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Exemplo</title>
+  <style>
+    body {
+      white-space: pre-line;
+      font-family: sans-serif;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
 <script>
-    var carro = {
-        marca : "Ford",
-        modelo : "Mustang",
-        ano : 2021
-    };
-    carro.ano = 2024;
-    carro.cor = "vermelho";
+  var carro = {
+    marca: "Ford",
+    modelo: "Mustang",
+    ano: 2021
+  };
+  carro.ano = 2024;
+  carro.cor = "vermelho";
 
-    var carro2 = {
-        marca : "Chevrolet",
-        modelo : "Camaro",
-        ano : 2022
-    };
-    carro2.ano = 2023;
-    carro2.cor = "amarelo";
+  var carro2 = {
+    marca: "Chevrolet",
+    modelo: "Camaro",
+    ano: 2022
+  };
+  carro2.ano = 2023;
+  carro2.cor = "amarelo";
 
-    var carro3 = {
-        marca : "Nissan",
-        modelo : "GTR-R35",
-        ano : 2020
-    };
-    carro3.ano = 2021;
-    carro3.cor = "azul";
+  var carro3 = {
+    marca: "Nissan",
+    modelo: "GTR-R35",
+    ano: 2020
+  };
+  carro3.ano = 2021;
+  carro3.cor = "azul";
 
-    document.getElementById("info").innerHTML =
-        carro.modelo + "<br>" +
-        carro2.modelo + "<br>" +
-        carro3.modelo + "<br>";
+  var pessoa = {
+    nome: "Maria",
+    endereco: {
+      rua: "rua A",
+      numero: 123,
+      cidade: "São Paulo"
+    }
+  };
 
-    document.getElementById("cores").innerHTML =
-        "cores: " + carro.cor + ", " + carro2.cor + ", " + carro3.cor + "<br>";
+  var info =
+    carro.modelo + "\n" +
+    carro2.modelo + "\n" +
+    carro3.modelo + "\n\n" +
+    "Cidade: " + pessoa.endereco.cidade + "\n";
 
-    var pessoa = {
-        nome : "Maria",
-        endereco : {
-            rua : "rua A",
-            numero : 123,
-            cidade : "São Paulo"
-        }
-    };
+  var cores =
+    "Cores: " + carro.cor + ", " + carro2.cor + ", " + carro3.cor + "\n";
 
-    document.getElementById("info").innerHTML +=
-        "<br>Cidade: " + pessoa.endereco.cidade;
+  document.body.innerText = info + cores;
 </script>
+
+</body>
+</html>
+
