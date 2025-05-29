@@ -1,78 +1,78 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Formulário</title>
-  <style>
-    body {
-      background: linear-gradient(120deg, #a18cd1, #fbc2eb);
-      margin: 0;
-      font-family: sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        body {
+            background: linear-gradient(120deg, #a18cd1, #fbc2eb);
+            margin: 0;
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    form {
-      background: #fff;
-      padding: 32px;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 400px;
-      margin-top: 150px;
-    }
+        form {
+            background: #fff;
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            margin-top: 150px;
+        }
 
-    h2 {
-      text-align: center;
-      margin-top: 0;
-    }
+        h2 {
+            text-align: center;
+        margin-top: 0;
+        }
 
-    label {
-      display: block;
-      margin-top: 16px;
-      font-weight: bold;
-      color: #5a189a;
-    }
+        label {
+            display: block;
+            margin-top: 16px;
+            font-weight: bold;
+            color: #5a189a;
+        }
 
-    .campo {
-      width: 100%;
-      padding: 10px;
-      margin-top: 4px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      background: #f9f9ff;
-    }
-
-    .campo.erro {
-      border-color: #e63946;
-      background: #fff0f3;
-    }
-
-    .mensagem-erro {
-      color: #e63946;
-      font-size: 15px;
-      margin-top: 4px;
-      display: none;
-    }
-
-    .botao {
-      margin-top: 24px;
-      width: 100%;
-      padding: 12px;
-      background: linear-gradient(90deg, #7b2ff2, #f357a8);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 1em;
-      cursor: pointer;
-    }
-
-    .botao:hover {
-      background: linear-gradient(90deg, #5a189a, #f357a8);
-    }
-  </style>
+        .campo {
+          width: 100%;
+          padding: 10px;
+          margin-top: 4px;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          background: #f9f9ff;
+        }
+    
+        .campo.erro {
+          border-color: #e63946;
+          background: #fff0f3;
+        }
+    
+        .mensagem-erro {
+          color: #e63946;
+          font-size: 15px;
+          margin-top: 4px;
+          display: none;
+        }
+    
+        .botao {
+          margin-top: 24px;
+          width: 100%;
+          padding: 12px;
+          background: linear-gradient(90deg, #7b2ff2, #f357a8);
+          color: #fff;
+          border: none;
+          border-radius: 8px;
+          font-size: 1em;
+          cursor: pointer;
+        }
+    
+        .botao:hover {
+          background: linear-gradient(90deg, #5a189a, #f357a8);
+        }
+    </style>
 </head>
 <body>
   <form onsubmit="return validaForm()" action="salvar.html" method="post">
@@ -108,23 +108,26 @@
 
   <script>
     function validaForm() {
-      var valido = true;
-      var ids = ["cep", "endereco", "numero", "bairro", "cidade", "estado"];
+        var valido = true;
+        var ids = ["cep", "endereco", "numero", "bairro", "cidade", "estado"];
 
-      for (var i = 0; i < ids.length; i++) {
+    for (var i = 0; i < ids.length; i++) {
         var id = ids[i];
         var campo = document.getElementById(id);
         var erro = document.getElementById("erro-" + id);
 
-        if (!campo.value.trim()) {
-          campo.className = "campo erro";
-          erro.style.display = "block";
-          valido = false;
-        } else {
-          campo.className = "campo";
-          erro.style.display = "none";
-        }
-      }
+    if (!campo.value.trim()) {
+        campo.className = "campo erro";
+        erro.style.display = "block";
+        valido = false;
+    } 
+    
+    else {
+        campo.className = "campo";
+        erro.style.display = "none";
+    }
+    
+    }
 
       return valido;
     }
