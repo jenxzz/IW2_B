@@ -16,8 +16,8 @@
 
         #ap {
             background-color: brown;
-            height: 520px;
-            width: 300px;
+            height: 510px;
+            width: 330px;
             border-radius: 20px;
             border: 2px black solid;
         }
@@ -25,20 +25,19 @@
         #tl {
             background-color: cadetblue;
             height: 200px;
-            width: 250px;
+            width: 230px;
             border-radius: 10px;
-            margin-left: 25px;
-            margin-top: 20px;
             border: 1px black solid;
         }
 
         #c {
-            height: 80px;
-            width: px;
-            border-bottom: 2px black solid;
+            height: 85px;
+            width: 330px;
+            border-bottom: 6px black solid;
             display: flex;
             justify-content: start;
             align-items: center;
+            border-bottom-right-radius: 40px;
         }
 
         #b1 {
@@ -59,6 +58,7 @@
             justify-content: center;
             display: flex;
             align-items: center;
+
         }
 
         #b2 {
@@ -90,6 +90,129 @@
             margin-left: 5px;
             margin-bottom: 30px;
         }
+
+        #tlo {
+            background-color: whitesmoke;
+            height: 250px;
+            width: 280px;
+            border-radius: 20px;
+            border: 2px black solid;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            margin-left: 24px;
+            margin-top: 15px;
+        }
+
+        #botões {
+            height: 160px;
+            width: 300px;
+            position: relative;
+        }
+
+        #bt1 {
+            background-color: rgb(37, 37, 37);
+            height: 100px;
+            width: 30px;
+            border-radius: 10px;
+            position: absolute;
+            left: 260px;
+            top: 10px;
+        }
+
+        #bt2 {
+            background-color: rgb(37, 37, 37);
+            height: 30px;
+            width: 100px;
+            border-radius: 10px;
+            position: absolute;
+            left: 225px;
+            top: 45px;
+            display: flex;
+            align-items: center;
+            position: absolute;
+        }
+
+        #bl1 {
+            background-color: rgb(27, 27, 27);
+            border: 2px rgb(19, 18, 18) solid;
+            border-radius: 50%;
+            height: 10px;
+            width: 10px;
+            margin-top: 10px;
+            margin-left: 8px;
+        }
+
+        #bl2 {
+            background-color: rgb(27, 27, 27);
+            border: 2px rgb(19, 18, 18) solid;
+            border-radius: 50%;
+            height: 10px;
+            width: 10px;
+            margin-top: 50px;
+            margin-left: 8px;
+        }
+     
+        #bl3 {
+            background-color: rgb(27, 27, 27);
+            border: 2px rgb(19, 18, 18) solid;
+            border-radius: 50%;
+            height: 10px;
+            width: 10px;
+            margin-left: 10px;
+        }
+
+        #bl4 {
+            background-color: rgb(27, 27, 27);
+            border: 2px rgb(19, 18, 18) solid;
+            border-radius: 50%;
+            height: 10px;
+            width: 10px;
+            margin-left: auto;   
+            margin-right: 10px;   
+        }
+
+        #linha-botoes {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-top: 10px; 
+            margin-left: 20px; 
+            gap: 20px; 
+        }
+
+        #bt3 {
+            background-color: rgb(206, 3, 3);
+            border-radius: 50px;
+            height: 5px;
+            width: 30px;
+            border: 2px black solid;
+        }
+
+        #bt4 {
+            background-color: aquamarine;
+            border-radius: 50px;
+            height: 5px;
+            width: 30px;
+            border: 2px black solid;
+        }
+
+        #tl2 {
+            background-color: rgb(116, 172, 32);
+            height: 60px;
+            width: 110px;
+            border-radius: 10px;
+            border: 1px black solid;
+            margin-left: 85px;
+        }
+
+        #bla {
+            background-color: rgb(27, 27, 27);
+            border: 2px rgb(19, 18, 18) solid;
+            border-radius: 50%;
+            height: 50px;
+            width: 50px;
+        }
     </style>
 </head>
 <body>
@@ -100,10 +223,29 @@
             <div id="b3"></div>
             <div id="b4"></div>
         </div>
-            <div id="tl">
-
-            </div>
         
+        <div id="tlo">
+            <div id="tl"></div>
+        </div>
+        
+        <div id="botões">
+            <div id="bt1">
+                <div id="bl1"></div>
+                <div id="bl2"></div>
+            </div>
+            <div id="bt2">
+                <div id="bl3"></div>
+                <div id="bl4"></div>
+            </div>
+            <div id="linha-botoes">
+                <div id="bla"></div>
+                <div id="bt3"></div>
+                <div id="bt4"></div>
+                
+            </div>
+            <div id="tl2"></div>
+            
+        </div>
     </div>
 </body>
 </html>
