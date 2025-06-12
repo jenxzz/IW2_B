@@ -82,6 +82,9 @@
     <label for="cep">CEP</label>
     <input type="text" id="cep" class="campo" />
     <div class="mensagem-erro" id="erro-cep">Campo obrigatório</div>
+    <button onclick="consultaAPI()" type="button">
+        Consultar CEP
+    </button>
 
     <label for="endereco">Endereço</label>
     <input type="text" id="endereco" class="campo" />
@@ -107,6 +110,22 @@
   </form>
 
   <script>
+    function consultaAPI(){
+      var cep = document.getElementById ("cep");
+      var url = "https://viacep.com.br/ws/"+cep.value+"/json";
+      fetch(url).then((response) => response.json()).then((dados) => {
+        var endereco = document.getElementById("endereco");
+        var bairro = document.getElementById("bairro");
+        var estado = document.getElementById("estado");
+        var cidade = document.getElementById("cidade");
+
+        endereco.value = dados.logradouro;
+        bairro.value = dados.bairro;
+        estado.value = dados.estado;
+        cidade.value = dados.localidade;
+      })
+    }
+
     function validaForm() {
         var valido = true;
         var ids = ["cep", "endereco", "numero", "bairro", "cidade", "estado"];
