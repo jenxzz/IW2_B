@@ -28,6 +28,11 @@
             width: 230px;
             border-radius: 10px;
             border: 1px black solid;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
 
         #c {
@@ -130,7 +135,6 @@
             top: 45px;
             display: flex;
             align-items: center;
-            position: absolute;
         }
 
         #bl1 {
@@ -160,6 +164,9 @@
             height: 10px;
             width: 10px;
             margin-left: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         #bl4 {
@@ -170,6 +177,9 @@
             width: 10px;
             margin-left: auto;   
             margin-right: 10px;   
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         #linha-botoes {
@@ -204,6 +214,12 @@
             border-radius: 10px;
             border: 1px black solid;
             margin-left: 85px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
         }
 
         #bla {
@@ -212,6 +228,19 @@
             border-radius: 50%;
             height: 50px;
             width: 50px;
+        }
+        .seta {
+            background: none;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
@@ -225,7 +254,9 @@
         </div>
         
         <div id="tlo">
-            <div id="tl"></div>
+            <div id="tl">
+                <input type="text" id="procurar" placeholder="Digite o nome ou n° do pokemon">
+            </div>
         </div>
         
         <div id="botões">
@@ -234,8 +265,12 @@
                 <div id="bl2"></div>
             </div>
             <div id="bt2">
-                <div id="bl3"></div>
-                <div id="bl4"></div>
+                <div id="bl3">
+                    <button class="seta" onclick="anteriorPokemon()">&lt;</button>
+                </div>
+                <div id="bl4">
+                    <button class="seta" onclick="proximoPokemon()">&gt;</button>
+                </div>
             </div>
             <div id="linha-botoes">
                 <div id="bla"></div>
@@ -247,5 +282,80 @@
             
         </div>
     </div>
+
+    <script>
+        const input = document.getElementById("procurar");
+        const tela = document.getElementById("tl");
+        const telinha = document.getElementById("tl2");
+        let pokemon = 1;
+
+        function procurarPokemon(id) {
+            const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error("Pokémon não encontrado");
+                    return response.json();
+                })
+                .then(data => {
+                    tela.innerHTML = `
+                        <input type="text" id="procurar" placeholder="Digite o nome ou n° do pokemon" value="${data.name}">
+                        <img src="${data.sprites.front_default}" alt="${data.name}" style="width: 110px; height: 110px; object-fit: contain; display: block; margin: 10px auto;">
+                        <div style="text-align: center; font-weight: bold; color: black;">#${data.id} - ${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</div>
+                    `;
+                    telinha.textContent = `Tipo: ${data.types.map(t => t.type.name).join(', ')}`;
+                    setTimeout(() => {
+                        const newInput = document.getElementById("procurar");
+                        newInput.addEventListener("keydown", inputKeydownHandler);
+                    }, 10);
+                    pokemon = data.id;
+                })
+
+                .then((res) => res.json).then(speciesData => {
+                    const entry = speciesData
+                })
+                .catch(error => {
+                    tela.innerHTML = `
+                        <input type="text" id="procurar" placeholder="Digite o nome ou n° do pokemon">
+                        <div style="margin: 30px 0; color: red;">Pokémon não encontrado</div>
+                    `;
+                    telinha.textContent = "Digite um nome válido";
+                    setTimeout(() => {
+                        const newInput = document.getElementById("procurar");
+                        newInput.addEventListener("keydown", inputKeydownHandler);
+                    }, 10);
+                });
+        }
+
+        function anteriorPokemon() {
+            if (pokemon > 1) {
+                pokemon--;
+                procurarPokemon(pokemon);
+            }
+        }
+
+        function proximoPokemon() {
+            if (pokemon < 898) {
+                pokemon++;
+                procurarPokemon(pokemon);
+            }
+        }
+
+        function inputKeydownHandler(e){
+            if (e.key === "Enter") {
+                let pokemon1 = input.value.trim().toLowerCase();
+                if (pokemon1) {
+                    procurarPokemon(pokemon1);
+                }
+            }
+        }
+
+        input.addEventListener("keydown", inputKeydownHandler);
+
+
+        window.onload = () => {
+            procurarPokemon(pokemon);
+        };
+    </script>
 </body>
 </html>
