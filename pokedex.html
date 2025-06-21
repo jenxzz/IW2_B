@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pokédex Prova</title>
     <style>
         body, html {
             height: 100%;
@@ -12,50 +12,38 @@
             justify-content: center;
             align-items: center;
             display: flex;
+            background: linear-gradient(135deg, #e66465, #9198e5);
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
-
         #ap {
-            background-color: brown;
+            background-color: #c62828;
             height: 510px;
             width: 330px;
             border-radius: 20px;
-            border: 2px black solid;
+            border: 4px #222 solid;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            position: relative;
         }
-
-        #tl {
-            background-color: cadetblue;
-            height: 200px;
-            width: 230px;
-            border-radius: 10px;
-            border: 1px black solid;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
         #c {
             height: 85px;
             width: 330px;
-            border-bottom: 6px black solid;
+            border-bottom: 6px #222 solid;
             display: flex;
             justify-content: start;
             align-items: center;
             border-bottom-right-radius: 40px;
+            position: relative;
         }
-
         #b1 {
             background-color: cornflowerblue;
             border-radius: 50%;
             height: 50px;
             width: 50px;
-            border: 1px black solid;
+            border: 2px #1976d2 solid;
         }
-
         #bb {
             background-color: antiquewhite;
-            border: 1px black solid;
+            border: 2px #222 solid;
             border-radius: 50%;
             height: 60px;
             width: 60px;
@@ -63,60 +51,80 @@
             justify-content: center;
             display: flex;
             align-items: center;
-
         }
-
         #b2 {
-            background-color: rgb(206, 3, 3);
-            border: 1px black solid;
+            background-color: #e53935;
+            border: 2px #222 solid;
             border-radius: 50%;
             height: 25px;
             width: 25px;
             margin-left: 10px;
             margin-bottom: 30px;
         }
-
         #b3 {
-            background-color: yellow;
-            border: 1px black solid;
+            background-color: #fbc02d;
+            border: 2px #222 solid;
             border-radius: 50%;
             height: 25px;
             width: 25px;
             margin-left: 5px;
             margin-bottom: 30px;
         }
-
         #b4 {
-            background-color: green;
-            border: 1px black solid;
+            background-color: #43a047;
+            border: 2px #222 solid;
             border-radius: 50%;
             height: 25px;
             width: 25px;
             margin-left: 5px;
             margin-bottom: 30px;
         }
-
         #tlo {
             background-color: whitesmoke;
             height: 250px;
             width: 280px;
             border-radius: 20px;
-            border: 2px black solid;
+            border: 2px #222 solid;
             justify-content: center;
             align-items: center;
             display: flex;
             margin-left: 24px;
             margin-top: 15px;
         }
-
+        #tl {
+            background-color: cadetblue;
+            height: 200px;
+            width: 230px;
+            border-radius: 10px;
+            border: 2px #222 solid;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        #tl2 {
+            background-color: #43a047;
+            height: 60px;
+            width: 110px;
+            border-radius: 10px;
+            border: 2px #222 solid;
+            margin-left: 85px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 10px;
+        }
         #botões {
             height: 160px;
             width: 300px;
             position: relative;
         }
-
         #bt1 {
-            background-color: rgb(37, 37, 37);
+            background-color: #222;
             height: 100px;
             width: 30px;
             border-radius: 10px;
@@ -124,9 +132,8 @@
             left: 260px;
             top: 10px;
         }
-
         #bt2 {
-            background-color: rgb(37, 37, 37);
+            background-color: #222;
             height: 30px;
             width: 100px;
             border-radius: 10px;
@@ -136,51 +143,30 @@
             display: flex;
             align-items: center;
         }
-
-        #bl1 {
-            background-color: rgb(27, 27, 27);
-            border: 2px rgb(19, 18, 18) solid;
+        #bl1, #bl2, #bl3, #bl4 {
+            background-color: #111;
+            border: 2px #333 solid;
             border-radius: 50%;
             height: 10px;
             width: 10px;
-            margin-top: 10px;
-            margin-left: 8px;
+            cursor: pointer; 
+        }
+
+        #bl1 {
+            margin-top: 10px; margin-left: 8px; 
         }
 
         #bl2 {
-            background-color: rgb(27, 27, 27);
-            border: 2px rgb(19, 18, 18) solid;
-            border-radius: 50%;
-            height: 10px;
-            width: 10px;
-            margin-top: 50px;
-            margin-left: 8px;
-        }
-     
-        #bl3 {
-            background-color: rgb(27, 27, 27);
-            border: 2px rgb(19, 18, 18) solid;
-            border-radius: 50%;
-            height: 10px;
-            width: 10px;
-            margin-left: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin-top: 50px; margin-left: 8px; 
         }
 
+        #bl3 {
+            margin-left: 10px; 
+        }  
+        
         #bl4 {
-            background-color: rgb(27, 27, 27);
-            border: 2px rgb(19, 18, 18) solid;
-            border-radius: 50%;
-            height: 10px;
-            width: 10px;
-            margin-left: auto;   
-            margin-right: 10px;   
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+            margin-left: auto; margin-right: 10px; 
+        } 
 
         #linha-botoes {
             display: flex;
@@ -191,37 +177,6 @@
             gap: 20px; 
         }
 
-        #bt3 {
-            background-color: rgb(206, 3, 3);
-            border-radius: 50px;
-            height: 5px;
-            width: 30px;
-            border: 2px black solid;
-        }
-
-        #bt4 {
-            background-color: aquamarine;
-            border-radius: 50px;
-            height: 5px;
-            width: 30px;
-            border: 2px black solid;
-        }
-
-        #tl2 {
-            background-color: rgb(116, 172, 32);
-            height: 60px;
-            width: 110px;
-            border-radius: 10px;
-            border: 1px black solid;
-            margin-left: 85px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
         #bla {
             background-color: rgb(27, 27, 27);
             border: 2px rgb(19, 18, 18) solid;
@@ -229,133 +184,179 @@
             height: 50px;
             width: 50px;
         }
-        .seta {
-            background: none;
-            border: none;
-            outline: none;
-            color: white;
-            font-size: 18px;
+
+        #bt3 {
+            background-color: #e53935;
+            border-radius: 50px;
+            height: 5px;
+            width: 30px;
+            border: 2px #222 solid;
+        }
+
+        #bt4 {
+            background-color: aquamarine;
+            border-radius: 50px;
+            height: 5px;
+            width: 30px;
+            border: 2px #222 solid;
+        }
+        
+        #procurar {
+            margin-top: 10px;
+            padding: 6px 10px;
+            border-radius: 8px 0 0 8px;
+            border: 1px solid #bdbdbd;
+            font-size: 1em;
+            width: 120px;
+        }
+
+        #buscar-btn {
+            padding: 6px 14px;
+            border-radius: 0 8px 8px 0;
+            border: 1px solid #bdbdbd;
+            background: #1976d2;
+            color: #fff;
+            font-weight: bold;
             cursor: pointer;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 1em;
+        }
+
+        #resultado img {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            display: block;
+            margin: 10px auto 0 auto;
+        }
+
+        #resultado {
+            margin-top: 6px;
+            text-align: center;
+        }
+
+        .poke {
+            font-weight: bold;
+            color: #5a189a;
+        }
+
+        .poke-tipo {
+            color: #fff;
+            background: #43a047;
+            border-radius: 8px;
+            padding: 2px 10px;
+            display: inline-block;
+            margin-top: 2px;
+        }
+
+        .poke-e {
+            font-size: 5px;
+            color: #444;
+            margin-top: 2px;
+        }
+
+        .poke-label {
+            font-weight: bold;
+            color: #333;
+            display: inline-block;
+            margin-bottom: 4px;
         }
     </style>
 </head>
 <body>
     <div id="ap">
         <div id="c">
-            <div id="bb"><div id="b1"></div></div>
+            <div id="bb">
+                <div id="b1"></div>
+            </div>
             <div id="b2"></div>
             <div id="b3"></div>
             <div id="b4"></div>
         </div>
-        
         <div id="tlo">
             <div id="tl">
-                <input type="text" id="procurar" placeholder="Digite o nome ou n° do pokemon">
+                <div style="width:100%;display:flex;justify-content:center;">
+                    <input type="text" id="procurar" placeholder="Nome ou número" />
+                    <button id="buscar-btn">Buscar</button>
+                </div>
+                <div id="resultado"></div>
             </div>
         </div>
-        
         <div id="botões">
             <div id="bt1">
                 <div id="bl1"></div>
                 <div id="bl2"></div>
             </div>
             <div id="bt2">
-                <div id="bl3">
-                    <button class="seta" onclick="anteriorPokemon()">&lt;</button>
-                </div>
-                <div id="bl4">
-                    <button class="seta" onclick="proximoPokemon()">&gt;</button>
-                </div>
+                <div id="bl3"></div> 
+                <div id="bl4"></div>
             </div>
             <div id="linha-botoes">
                 <div id="bla"></div>
                 <div id="bt3"></div>
                 <div id="bt4"></div>
-                
             </div>
             <div id="tl2"></div>
-            
         </div>
     </div>
-
     <script>
-        const input = document.getElementById("procurar");
-        const tela = document.getElementById("tl");
-        const telinha = document.getElementById("tl2");
-        let pokemon = 1;
+var currentId = 1;
 
-        function procurarPokemon(id) {
-            const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+function traduzirTipo(tipo) {
+    var tipos = {
+        normal: "Normal",
+        fire: "Fogo",
+        water: "Água",
+        electric: "Elétrico",
+        grass: "Grama",
+        ice: "Gelo",
+        fighting: "Lutador",
+        poison: "Venenoso",
+        ground: "Terrestre",
+        flying: "Voador",
+        psychic: "Psíquico",
+        bug: "Inseto",
+        rock: "Pedra",
+        ghost: "Fantasma",
+        dragon: "Dragão",
+        dark: "Sombrio",
+        steel: "Aço",
+        fairy: "Fada"
+    };
+    return tipos[tipo] || tipo;
+}
 
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) throw new Error("Pokémon não encontrado");
-                    return response.json();
-                })
-                .then(data => {
-                    tela.innerHTML = `
-                        <input type="text" id="procurar" placeholder="Digite o nome ou n° do pokemon" value="${data.name}">
-                        <img src="${data.sprites.front_default}" alt="${data.name}" style="width: 110px; height: 110px; object-fit: contain; display: block; margin: 10px auto;">
-                        <div style="text-align: center; font-weight: bold; color: black;">#${data.id} - ${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</div>
-                    `;
-                    telinha.textContent = `Tipo: ${data.types.map(t => t.type.name).join(', ')}`;
-                    setTimeout(() => {
-                        const newInput = document.getElementById("procurar");
-                        newInput.addEventListener("keydown", inputKeydownHandler);
-                    }, 10);
-                    pokemon = data.id;
-                })
+function mostrarPokemon(pokemon) {
+    document.getElementById("resultado").innerHTML = `
+        <img src="${pokemon.sprites.front_default || ''}" alt="${pokemon.name}">
+        <div><b>Número:</b> ${pokemon.id}</div>
+        <div><b>Nome:</b> ${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</div>
+    `;
+    document.getElementById("tl2").textContent = "Tipo: " + pokemon.types.map(t => traduzirTipo(t.type.name)).join(', ');
+    document.getElementById("tl2").style.fontSize = "16px";
+    currentId = pokemon.id;
+}
 
-                .then((res) => res.json).then(speciesData => {
-                    const entry = speciesData
-                })
-                .catch(error => {
-                    tela.innerHTML = `
-                        <input type="text" id="procurar" placeholder="Digite o nome ou n° do pokemon">
-                        <div style="margin: 30px 0; color: red;">Pokémon não encontrado</div>
-                    `;
-                    telinha.textContent = "Digite um nome válido";
-                    setTimeout(() => {
-                        const newInput = document.getElementById("procurar");
-                        newInput.addEventListener("keydown", inputKeydownHandler);
-                    }, 10);
-                });
-        }
+document.getElementById("buscar-btn").onclick = function(e) {
+    e.preventDefault();
+    var valor = document.getElementById("procurar").value.trim().toLowerCase();
+    fetch("https://pokeapi.co/api/v2/pokemon/" + valor)
+        .then(r => r.json())
+        .then(mostrarPokemon);
+};
 
-        function anteriorPokemon() {
-            if (pokemon > 1) {
-                pokemon--;
-                procurarPokemon(pokemon);
-            }
-        }
+document.getElementById("bl3").onclick = function() { // Anterior
+    if (currentId > 1) {
+        fetch("https://pokeapi.co/api/v2/pokemon/" + (currentId - 1))
+            .then(r => r.json())
+            .then(mostrarPokemon);
+    }
+};
 
-        function proximoPokemon() {
-            if (pokemon < 898) {
-                pokemon++;
-                procurarPokemon(pokemon);
-            }
-        }
-
-        function inputKeydownHandler(e){
-            if (e.key === "Enter") {
-                let pokemon1 = input.value.trim().toLowerCase();
-                if (pokemon1) {
-                    procurarPokemon(pokemon1);
-                }
-            }
-        }
-
-        input.addEventListener("keydown", inputKeydownHandler);
-
-
-        window.onload = () => {
-            procurarPokemon(pokemon);
-        };
+document.getElementById("bl4").onclick = function() { // Próximo
+    fetch("https://pokeapi.co/api/v2/pokemon/" + (currentId + 1))
+        .then(r => r.json())
+        .then(mostrarPokemon);
+};
     </script>
 </body>
 </html>
