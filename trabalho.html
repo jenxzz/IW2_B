@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/bootstrap/bootstrap.min.css"/>
+    <style>
+        .banner {
+          width: 100%;
+          height: 150px;
+          background: linear-gradient(90deg, #ffc0cb, #ff5722);
+          color: white;
+          font-size: 2rem;
+          font-weight: bold;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 24px;
+        }
+    </style>    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div style="background-color: black;" class="container-fluid">
+          <a style="color: white" class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a style="color: white" class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a style="color: white" class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item">
+                <a style="color: white" class="nav-link disabled" aria-disabled="true">Disabled</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="banner">
+                    🔥 BLACK FRIDAY - SÓ HOJE!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active">Menu Principal</a>
+                    <a href="#" class="list-group-item list-group-item-action">Início</a>
+                    <a href="#" class="list-group-item list-group-item-action">Perfil</a>
+                    <a href="#" class="list-group-item list-group-item-action">Mensagens</a>
+                    <a href="#" class="list-group-item list-group-item-action">Configurações</a>
+                    <a href="#" class="list-group-item list-group-item-action">Ajuda</a>
+                    <a href="#" class="list-group-item list-group-item-action">Sair</a>
+                </div>
+            </div>
+            <div class="col-8">
+                <h1>Como Funciona o Bootstrap</h1>
+                <p>Bootstrap é um dos frameworks front-end mais populares do mundo. Criado pelo time do Twitter em 2011, ele tem como objetivo principal acelerar o desenvolvimento de interfaces modernas e responsivas para sites e aplicações web. Ao longo dos anos, o Bootstrap evoluiu e passou por várias versões, tornando-se uma ferramenta robusta, confiável e amplamente adotada por desenvolvedores iniciantes e experientes.</p>
+
+                <h2>Por Que Utilizar o Bootstrap?</h2>
+                <p>Existem várias razões pelas quais o Bootstrap é amplamente utilizado. Uma das principais vantagens é sua facilidade de uso. Basta adicionar os arquivos CSS e JavaScript ao seu projeto para começar a utilizar os componentes prontos. Além disso, o Bootstrap oferece um sistema de grid flexível que facilita a criação de layouts responsivos, adaptando-se automaticamente a diferentes tamanhos de tela. Isso elimina grande parte do trabalho manual de escrever media queries e personalizações específicas para dispositivos.</p>
+
+                <h2>Sistema de Grid</h2>
+                <p>O sistema de grid do Bootstrap é baseado em 12 colunas. Com ele, é possível organizar o conteúdo da página de forma responsiva usando classes como <code>.col-md-6</code>, <code>.col-sm-12</code> e assim por diante. O grid é flexível e permite que os elementos sejam reposicionados e redimensionados automaticamente conforme o tamanho da tela do dispositivo do usuário. Isso torna o desenvolvimento muito mais ágil e eficiente.</p>
+
+                <h2>Componentes Prontos</h2>
+                <p>O Bootstrap vem com diversos componentes visuais prontos para uso, como botões, formulários, navegação, carrosséis, modais, alertas, cards e muito mais. Cada componente já possui estilos aplicados e pode ser customizado com classes utilitárias, o que reduz significativamente o tempo necessário para estilizar manualmente cada elemento da interface. Esses componentes seguem padrões modernos de design e são constantemente atualizados pela comunidade.</p>
+
+                <h2>Utilitários CSS</h2>
+                <p>Além dos componentes, o Bootstrap oferece uma grande variedade de classes utilitárias que ajudam a aplicar margens, preenchimentos, cores, tamanhos de texto, alinhamentos e outras propriedades de forma rápida. Por exemplo, para adicionar uma margem inferior de 4 unidades a um elemento, basta usar <code>mb-4</code>. Isso elimina a necessidade de criar classes CSS personalizadas para pequenos ajustes visuais.</p>
+
+                <h2>Responsividade e Acessibilidade</h2>
+                <p>Um dos grandes destaques do Bootstrap é seu compromisso com a responsividade e a acessibilidade. Todos os componentes são projetados para funcionar bem em diferentes tamanhos de tela, desde celulares até monitores grandes. Além disso, o framework segue as melhores práticas de acessibilidade, garantindo que sites criados com Bootstrap sejam navegáveis por leitores de tela e acessíveis a usuários com deficiências.</p>
+
+                <h2>Como Começar</h2>
+                <p>Para começar a usar o Bootstrap, você pode incluir os arquivos diretamente do CDN oficial. Isso permite iniciar rapidamente sem precisar fazer o download dos arquivos. Para projetos maiores, é possível instalar o Bootstrap via npm e integrá-lo ao seu sistema de build. A documentação oficial do Bootstrap é muito completa e oferece exemplos práticos, explicações detalhadas e um guia de boas práticas para desenvolvedores de todos os níveis.</p>
+
+                <h2>Conclusão</h2>
+                <p>O Bootstrap é uma ferramenta essencial para desenvolvedores web que buscam agilidade, consistência e responsividade em seus projetos. Sua ampla adoção, documentação rica e comunidade ativa fazem dele uma escolha confiável para a criação de interfaces modernas. Ao dominar o Bootstrap, você será capaz de criar páginas elegantes, acessíveis e funcionais com muito mais eficiência.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+</html>
