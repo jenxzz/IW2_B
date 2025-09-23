@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CADASTRO</title>
+    <style>
+      /* a div td completa simbolizanbdo o cabeçalho */
+      .cabecalho{
+        border: 2px solid black;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        padding: 8px;
+        height: 100px;
+      }
+      /* espaçamento das tags de escrita */
+      input{
+        margin: 5px;
+      }
+      /* esapçamento entre os botoes e o select */
+      #ativo,
+      button{
+        margin: 8px;
+      }
+    </style>
+</head>
+<body>
+
+
+  <!-- cabecalho gerado -->
+  <div class="cabecalho">
+    <input type="hidden" id="id"><br>
+    <input type="text" id="nome" placeholder="Nome"><br>
+    <input type="email" id="gmail" placeholder="Email"><br>
+    <input type="password" id="senha" placeholder="Senha"><br>
+    <!-- seleção de ativo e Inativo -->
+    <select id="ativo">
+      <option value="1">Ativo</option>
+      <option value="0">Inativo</option>
+  </select><br>
+  <!-- botoes com a funcao de salvar e excluir -->
+   <button onclick="salvar()">Salvar</button><br>
+   <button onclick="limpar()">Limpar</button>
+
+  </div>
+
+  <!-- campodas pesquisas -->
+   <div>
+    <input type="text" id="pesquisa" placeholder="Pesquisar"><br>
+       <button onclick="carregarPesquisa()">Carregar</button> <!--pesquisa sobre um usuario especifico -->
+       <button onclick="carregar()">Listar Todos</button> <!--carrega todas as informacoesdo usuarios criados -->
+    </input>
+   </div>
+
+   <table id="tabela">
+    <!-- cabeçalho da tabela   -->
+    <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Gmail</th>
+            <th>Status</th>
+          </tr>
+      </thead>
+      <!-- corpo da tabela -->
+      <tbody></tbody>
+
+   </table>
+
+    <script>
+      // url da api
+      const url_api = "https://localhost/IW2-B/a.php";
+
+      // ação ao clicar no botao
+      function carregar(pesquisa = ""){
+          let url= url_api;
+      
+          if (pesquisa){
+            url += "?pesquisa=" + encodeURIComponent(pesquisa);
+          }
+
+          fetch(url)
+            .then(resposta => resposta.json())
+            .then(dados => {
+              console.log(dados)
+              dados.forEach(usuario => {
+
+                const tr =document.createElement("tr");
+
+                tr.innerHTML =`
+                <td>${usuario.ID}</td>
+                <td>${usuario.NOME}</td>
+                <td>${usuario.GMAIL}</td> 
+                <td>${usuario.ATIVO ==1 ? "sim" :"Não"}</td>
+                <td>
+                  <button onclick="editar(${JSON.stringify(usuario)})">Editar</button>
+                  <button onclick="excluir(${usuario.ID})">Excluir</button>
+                </td> `;
+                  tbody.appendChild(tr);
+              });
+
+            })
+            
+            const tbody=document.querySelector("#tabela tbody");
+            tbody.innerHTML = "";
+
+      }
+
+      function carregarPesquisa(){
+        const valor = document.getElementById("pesquisa").value;
+        carregar(valor);
+      }
+      
+      async function salvar(){
+        const id=document.getElementById("id").value;
+        const nome=document.getElementById("nome").value;
+        const gmail=document.getElementById("gmail").value;
+        const senha=document.getElementById("senha").value;
+        const ativo=document.getElementById("ativo").value;
+
+        const payload = {ID: id, NOME: nome,GMAIL: gmail, SENHA :senha, ATIVO : ativo};
+
+        if(id){
+          await fetch (url_api,{method: "PUT", body: JSON.stringify(payload)});
+        }
+        else{
+          await fetch (url_api,{method: "POST", body: JSON.stringify(payload)});
+        }
+
+        limpar();
+        carregar();
+      }
+
+      function editar(usuario){
+        const id=document.getElementById("id").value = usuario.ID;
+        const nome=document.getElementById("nome").value= usuario.NOME;
+        const gmail=document.getElementById("gmail").value= usuario.GMAIL;
+        const senha=document.getElementById("senha").value= usuario.SENHA;
+        const ativo=document.getElementById("ativo").value= usuario.ATIVO;
+      }
+      console.log(editar);
+      async function excluir(id){
+          if (confirm("deseja mesmo excluir este usuario?")){
+            await fetch (url_api + "?id=" + id, {method: "DELETE"});
+            carregar();
+          }
+      }
+      function limpar(){
+        const id=document.getElementById("id").value = "";
+        const nome=document.getElementById("nome").value= "";
+        const gmail=document.getElementById("gmail").value = "";
+        const senha=document.getElementById("senha").value = "";
+        const ativo=document.getElementById("ativo").value = "1 ";
+        }
+        carregar();
+    </script>
+</body>
+</html>
