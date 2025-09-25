@@ -2,159 +2,147 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CADASTRO</title>
-    <style>
-      /* a div td completa simbolizanbdo o cabeçalho */
-      .cabecalho{
-        border: 2px solid black;
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        padding: 8px;
-        height: 100px;
-      }
-      /* espaçamento das tags de escrita */
-      input{
-        margin: 5px;
-      }
-      /* esapçamento entre os botoes e o select */
-      #ativo,
-      button{
-        margin: 8px;
-      }
-    </style>
+    <title>Cadastro de Usuários</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="container py-4">
 
+    <h2 class="mb-4 text-center">Cadastro de Usuários</h2>
 
-  <!-- cabecalho gerado -->
-  <div class="cabecalho">
-    <input type="hidden" id="id"><br>
-    <input type="text" id="nome" placeholder="Nome"><br>
-    <input type="email" id="gmail" placeholder="Email"><br>
-    <input type="password" id="senha" placeholder="Senha"><br>
-    <!-- seleção de ativo e Inativo -->
-    <select id="ativo">
-      <option value="1">Ativo</option>
-      <option value="0">Inativo</option>
-  </select><br>
-  <!-- botoes com a funcao de salvar e excluir -->
-   <button onclick="salvar()">Salvar</button><br>
-   <button onclick="limpar()">Limpar</button>
+    <form id="usuarioForm" class="row g-3 mb-3">
+        <input type="hidden" id="usuarioId">
+        <div class="col-md-4">
+            <input type="text" class="form-control" id="nomeUsuario" placeholder="Nome completo" required>
+        </div>
+        <div class="col-md-4">
+            <input type="email" class="form-control" id="emailUsuario" placeholder="E-mail" required>
+        </div>
+        <div class="col-md-2">
+            <input type="password" class="form-control" id="senhaUsuario" placeholder="Senha" required>
+        </div>
+        <div class="col-md-2">
+            <select class="form-select" id="statusUsuario">
+                <option value="1">Ativo</option>
+                <option value="0">Inativo</option>
+            </select>
+        </div>
+        <div class="col-12 d-flex gap-2">
+            <button type="submit" class="btn btn-success">Salvar</button>
+            <button type="button" class="btn btn-secondary" onclick="resetarFormulario()">Limpar</button>
+        </div>
+    </form>
 
-  </div>
+    <div class="mb-3 d-flex gap-2">
+        <input type="text" id="campoBusca" class="form-control" placeholder="Buscar por nome">
+        <button class="btn btn-primary" onclick="buscarUsuarios()">Buscar</button>
+        <button class="btn btn-outline-dark" onclick="listarUsuarios()">Listar Todos</button>
+    </div>
 
-  <!-- campodas pesquisas -->
-   <div>
-    <input type="text" id="pesquisa" placeholder="Pesquisar"><br>
-       <button onclick="carregarPesquisa()">Carregar</button> <!--pesquisa sobre um usuario especifico -->
-       <button onclick="carregar()">Listar Todos</button> <!--carrega todas as informacoesdo usuarios criados -->
-    </input>
-   </div>
-
-   <table id="tabela">
-    <!-- cabeçalho da tabela   -->
-    <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Gmail</th>
-            <th>Status</th>
-          </tr>
-      </thead>
-      <!-- corpo da tabela -->
-      <tbody></tbody>
-
-   </table>
+    <table class="table table-striped" id="tabelaUsuarios">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
 
     <script>
-      // url da api
-      const url_api = "https://localhost/IW2-B/a.php";
+        var API_URL = "http://localhost/IW2_B/prova/prova.php";
 
-      // ação ao clicar no botao
-      function carregar(pesquisa = ""){
-          let url= url_api;
-      
-          if (pesquisa){
-            url += "?pesquisa=" + encodeURIComponent(pesquisa);
-          }
+        document.getElementById('usuarioForm').onsubmit = function(e) {
+            e.preventDefault();
+            salvarUsuario();
+        };
 
-          fetch(url)
-            .then(resposta => resposta.json())
-            .then(dados => {
-              console.log(dados)
-              dados.forEach(usuario => {
+        function listarUsuarios(filtro) {
+            var url = API_URL;
+            if (filtro) url += "?pesquisa=" + encodeURIComponent(filtro);
 
-                const tr =document.createElement("tr");
-
-                tr.innerHTML =`
-                <td>${usuario.ID}</td>
-                <td>${usuario.NOME}</td>
-                <td>${usuario.GMAIL}</td> 
-                <td>${usuario.ATIVO ==1 ? "sim" :"Não"}</td>
-                <td>
-                  <button onclick="editar(${JSON.stringify(usuario)})">Editar</button>
-                  <button onclick="excluir(${usuario.ID})">Excluir</button>
-                </td> `;
-                  tbody.appendChild(tr);
-              });
-
-            })
-            
-            const tbody=document.querySelector("#tabela tbody");
-            tbody.innerHTML = "";
-
-      }
-
-      function carregarPesquisa(){
-        const valor = document.getElementById("pesquisa").value;
-        carregar(valor);
-      }
-      
-      async function salvar(){
-        const id=document.getElementById("id").value;
-        const nome=document.getElementById("nome").value;
-        const gmail=document.getElementById("gmail").value;
-        const senha=document.getElementById("senha").value;
-        const ativo=document.getElementById("ativo").value;
-
-        const payload = {ID: id, NOME: nome,GMAIL: gmail, SENHA :senha, ATIVO : ativo};
-
-        if(id){
-          await fetch (url_api,{method: "PUT", body: JSON.stringify(payload)});
-        }
-        else{
-          await fetch (url_api,{method: "POST", body: JSON.stringify(payload)});
+            fetch(url)
+            .then(response => response.json())
+            .then(function(usuarios) {
+                var tbody = document.querySelector("#tabelaUsuarios tbody");
+                tbody.innerHTML = "";
+                usuarios.forEach(function(u) {
+                    var tr = document.createElement("tr");
+                    tr.innerHTML = 
+                        "<td>" + u.ID + "</td>" +
+                        "<td>" + u.NOME + "</td>" +
+                        "<td>" + u.GMAIL + "</td>" +
+                        "<td>" + (u.ATIVO == 1 ? "Ativo" : "Inativo") + "</td>" +
+                        "<td>" +
+                        "<button class='btn btn-warning btn-sm' onclick='preencherEdicao(" + u.ID + ",\"" + u.NOME + "\",\"" + u.GMAIL + "\",\"" + u.SENHA + "\"," + u.ATIVO + ")'>Editar</button> " +
+                        "<button class='btn btn-danger btn-sm' onclick='removerUsuario(" + u.ID + ")'>Excluir</button>" +
+                        "</td>";
+                    tbody.appendChild(tr);
+                });
+            });
         }
 
-        limpar();
-        carregar();
-      }
-
-      function editar(usuario){
-        const id=document.getElementById("id").value = usuario.ID;
-        const nome=document.getElementById("nome").value= usuario.NOME;
-        const gmail=document.getElementById("gmail").value= usuario.GMAIL;
-        const senha=document.getElementById("senha").value= usuario.SENHA;
-        const ativo=document.getElementById("ativo").value= usuario.ATIVO;
-      }
-      console.log(editar);
-      async function excluir(id){
-          if (confirm("deseja mesmo excluir este usuario?")){
-            await fetch (url_api + "?id=" + id, {method: "DELETE"});
-            carregar();
-          }
-      }
-      function limpar(){
-        const id=document.getElementById("id").value = "";
-        const nome=document.getElementById("nome").value= "";
-        const gmail=document.getElementById("gmail").value = "";
-        const senha=document.getElementById("senha").value = "";
-        const ativo=document.getElementById("ativo").value = "1 ";
+        function buscarUsuarios() {
+            var termo = document.getElementById("campoBusca").value;
+            listarUsuarios(termo);
         }
-        carregar();
+
+        function salvarUsuario() {
+            var id = document.getElementById("usuarioId").value;
+            var nome = document.getElementById("nomeUsuario").value;
+            var email = document.getElementById("emailUsuario").value;
+            var senha = document.getElementById("senhaUsuario").value;
+            var status = parseInt(document.getElementById("statusUsuario").value);
+
+            var dados = { ID: id, NOME: nome, GMAIL: email, SENHA: senha, ATIVO: status };
+
+            if (id) {
+                fetch(API_URL, {
+                    method: "PUT",
+                    body: JSON.stringify(dados),
+                    headers: { "Content-Type": "application/json" }
+                }).then(function() {
+                    resetarFormulario();
+                    listarUsuarios();
+                });
+            } else {
+                fetch(API_URL, {
+                    method: "POST",
+                    body: JSON.stringify(dados),
+                    headers: { "Content-Type": "application/json" }
+                }).then(function() {
+                    resetarFormulario();
+                    listarUsuarios();
+                });
+            }
+        }
+
+        function preencherEdicao(id, nome, gmail, senha, ativo) {
+            document.getElementById("usuarioId").value = id;
+            document.getElementById("nomeUsuario").value = nome;
+            document.getElementById("emailUsuario").value = gmail;
+            document.getElementById("senhaUsuario").value = senha;
+            document.getElementById("statusUsuario").value = ativo;
+        }
+
+        function removerUsuario(id) {
+            if (confirm("Tem certeza que deseja excluir este usuário?")) {
+                fetch(API_URL + "?id=" + id, { method: "DELETE" })
+                .then(function() {
+                    listarUsuarios();
+                });
+            }
+        }
+
+        function resetarFormulario() {
+            document.getElementById("usuarioForm").reset();
+            document.getElementById("usuarioId").value = "";
+        }
+
+        listarUsuarios();
     </script>
 </body>
 </html>
