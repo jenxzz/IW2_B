@@ -106,7 +106,7 @@
             </select>
         </div>
         <div class="col-12 d-flex gap-2">
-            <button type="submit" class="btn btn-success">Salvar</button>
+            <button type="submit" class="btn btn-success" onclick="salvarTenis()">Salvar</button>
             <button type="button" class="btn btn-secondary" onclick="resetarFormulario()">Limpar</button>
         </div>
     </form>
@@ -132,7 +132,7 @@
     </table>
 
     <script>
-        var API_URL = "http://localhost/IW2_B/prova/prova.php";
+        var API_URL = "https://localhost/IW2_B/prova/prova.php";
 
         document.getElementById('tenisForm').onsubmit = function(e) {
             e.preventDefault();
