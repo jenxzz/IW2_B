@@ -1,8 +1,17 @@
 <?php
- header("Content-Type: application/json; charset=utf-8"); 
+ header("Content-Type: application/json; charset=utf-8"); //modificar o php para o tipo JSON
+ header("Access-Control-Allow-Origin: *");
+ header("access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 
- $con=new mysqli('localhost','root','','cadastro');
+ //configuracao do banco de dados
+ $host="localhost";
+ $usuario="root";
+ $senha="";
+ $db="cadastro";
+//ligar com o banco de dados
+ $con=new mysqli($host,$usuario,$senha,$db);
 
+ //verificar se contem erros
  if($con ->connect_error){
     http_response_code(500);
     echo json_encode(["error" => "falha de conexao: " . $con->connect_error]);
@@ -14,12 +23,17 @@
     case "GET":
         if(isset($_GET['pesquisa'])){
             $pesquisa = "%" . $_GET['pesquisa'] . "%";
+                //preparao caminho sql
             $stmt= $con ->prepare("SELECT * FROM usuarios WHERE NOME LIKE ?");
+                //evita sql injection 
             $stmt ->bind_param("s",$pesquisa);
+                //executa a query
             $stmt ->execute();
+                //salva o retorno da pesquisa no banco de dados para variavel result
             $result = $stmt->get_result();
         }
         else{
+                //busca uma lista de usuarios ordenadas pelo ID  chave primaria
             $result=$con->query("SELECT * FROM usuarios order by ID desc");
         }
         $retorno = [];
@@ -31,11 +45,12 @@
         break;
     
     case "POST":
+        //le todo o conteudo do body e transforma o em json
         $data= json_decode(file_get_contents("php://input"),true);
         
-        $stmt=$con->prepare("INSERT INTO usuarios (NOME,GMAIL,SENHA,ATIVO) VALUES(?,?,?,?)");
+        $stmt=$con->prepare("INSERT INTO usuarios (NOME,MARCA,PRECO,ATIVO) VALUES(?,?,?,?)");
 
-        $stmt->bind_param("sssi",$data['NOME'],$data['GMAIL'],$data['SENHA'],$data['ATIVO']);
+        $stmt->bind_param("sssi",$data['NOME'],$data['MARCA'],$data['PRECO'],$data['ATIVO']);
 
         $stmt->execute();
 
@@ -45,9 +60,9 @@
     case "PUT":
         $data= json_decode(file_get_contents("php://input"),true);
 
-        $stmt=$con->prepare("UPDATE usuarios SET NOME=?,GMAIL=?,SENHA=?,ATIVO=? WHERE ID=?");
+        $stmt=$con->prepare("UPDATE usuarios SET NOME=?,MARCA=?,PRECO=?,ATIVO=? WHERE ID=?");
 
-        $stmt->bind_param("sssii",$data["NOME"],$data["GMAIL"],$data["SENHA"],$data["ATIVO"],$data["ID"]);
+        $stmt->bind_param("sssii",$data["NOME"],$data["MARCA"],$data["PRECO"],$data["ATIVO"],$data["ID"]);
         
         $stmt->execute();
 
